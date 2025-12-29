@@ -6,6 +6,9 @@ import resumenData from '../../data/resumen_ley_149_2024.json';
 function ResumenLeyAccordion() {
   const bloques = resumenData;
   const [openIndex, setOpenIndex] = useState(null);
+  const [openSub, setOpenSub] = useState(null);
+  // Mensaje accesible para lectores de pantalla
+  const [statusMsg, setStatusMsg] = useState('');
   // Subacordeones para el primer bloque
   const primerBloque = bloques[0];
   // Extraer los textos de cada título
@@ -52,34 +55,56 @@ function ResumenLeyAccordion() {
       `
     }
   ];
-  const [openSub, setOpenSub] = useState(null);
+  // Contador visual para alternancia
+  let visualIdx = 1;
+
+  // Actualizar mensaje accesible cuando se expande/colapsa
+  function handleAccordion(idx, titulo) {
+    setOpenIndex(openIndex === idx ? null : idx);
+    setStatusMsg(openIndex === idx ? `Sección ${titulo} colapsada` : `Sección ${titulo} expandida`);
+  }
+  function handleSubAccordion(i, titulo) {
+    setOpenSub(openSub === i ? null : i);
+    setStatusMsg(openSub === i ? `Subsección ${titulo} colapsada` : `Subsección ${titulo} expandida`);
+  }
 
   return (
-    <section>
+    <section aria-label="Resumen del Proyecto de Ley" style={{position: 'relative'}}>
+      {/* Mensaje accesible para lectores de pantalla */}
+      <div aria-live="polite" aria-atomic="true" style={{position: 'absolute', left: '-9999px', height: 1, width: 1, overflow: 'hidden'}}>{statusMsg}</div>
       <h2>Resumen Proyecto Ley 149 de 2024</h2>
       <div>
         {/* Primer bloque con subacordeones */}
-        <div style={{marginBottom: '0.2em', border: '2px solid #1976d2', borderRadius: 8, background: '#e3f2fd'}}>
+        <div style={{marginBottom: '0.2em', border: '2px solid #1976d2', borderRadius: 8, background: '#fff'}}>
           <button
             style={{
               width: '100%',
               textAlign: 'left',
               padding: '1.1em',
-              background: '#1976d2',
+              background: '#fff',
               border: 'none',
               borderRadius: 8,
               fontWeight: 'bold',
-              color: '#fff',
+              color: '#222',
               fontSize: '1.15em',
               cursor: 'pointer',
-              letterSpacing: 0.5
+              letterSpacing: 0.5,
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'space-between'
             }}
-            onClick={() => setOpenIndex(openIndex === 0 ? null : 0)}
+            aria-expanded={openIndex === 0}
+            aria-controls="panel-primer-bloque"
+            id="accordion-primer-bloque"
+            onClick={() => handleAccordion(0, primerBloque.titulo)}
           >
-            {primerBloque.titulo}
+            <span>{primerBloque.titulo}</span>
+            <span style={{transition: 'transform 0.2s', transform: openIndex === 0 ? 'rotate(90deg)' : 'rotate(0deg)'}}>
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1565c0" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+            </span>
           </button>
           {openIndex === 0 && (
-            <div style={{padding: '0.3em 0.3em 0.05em 0.3em', background: '#f7f7f7', borderRadius: 8}}>
+            <div id="panel-primer-bloque" role="region" aria-labelledby="accordion-primer-bloque" style={{padding: '0.3em 0.3em 0.05em 0.3em', background: '#f7f7f7', borderRadius: 8}}>
               {secciones.map((sec, i) => (
                 <div key={i} style={{marginBottom: '0.15em', border: `1.5px solid ${sec.color}`, borderRadius: 7, background: sec.fondo}}>
                   <button
@@ -87,21 +112,31 @@ function ResumenLeyAccordion() {
                       width: '100%',
                       textAlign: 'left',
                       padding: '0.9em',
-                      background: sec.color,
+                      background: (i % 2 === 0) ? '#1976d2' : '#fff',
                       border: 'none',
                       borderRadius: 7,
                       fontWeight: 'bold',
-                      color: '#fff',
+                      color: (i % 2 === 0) ? '#fff' : '#1976d2',
                       fontSize: '1.05em',
                       cursor: 'pointer',
-                      letterSpacing: 0.5
+                      letterSpacing: 0.5,
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'space-between'
                     }}
-                    onClick={() => setOpenSub(openSub === i ? null : i)}
+                    aria-expanded={openSub === i}
+                    aria-controls={`panel-sub-${i}`}
+                    id={`accordion-sub-${i}`}
+                    onClick={() => handleSubAccordion(i, sec.titulo)}
                   >
-                    {sec.titulo}
+                    <span>{sec.titulo}</span>
+                    <span style={{transition: 'transform 0.2s', transform: openSub === i ? 'rotate(90deg)' : 'rotate(0deg)'}}>
+                      {/* Flecha blanca o azul oscuro */}
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke={(i % 2 === 0) ? '#fff' : '#1565c0'} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+                    </span>
                   </button>
                   {openSub === i && (
-                    <div style={{
+                    <div id={`panel-sub-${i}`} role="region" aria-labelledby={`accordion-sub-${i}`} style={{
                       padding: '0.3em 0.4em 0.05em 0.4em',
                       background: sec.fondo,
                       color: '#222',
@@ -123,15 +158,16 @@ function ResumenLeyAccordion() {
         </div>
         {/* Resto de bloques normales */}
         {bloques.slice(1).map((bloque, idx) => {
-          // Si es el bloque de "Funcionalidad y Finalidad", aplicar estilo especial
-          if (bloque.titulo === 'Funcionalidad y Finalidad') {
-            // ...estilo ya aplicado...
-            // ...existing code...
-          }
-          // Si es el bloque de "Preguntas Básicas", aplicar estilo especial
+          // Alternancia global
+          const isOdd = visualIdx % 2 === 1;
+          const bgColor = isOdd ? '#1976d2' : '#f7f7f7';
+          const textColor = isOdd ? '#fff' : '#222';
+          const arrowColor = isOdd ? '#fff' : '#1565c0';
+          const thisIdx = visualIdx;
+          // Preguntas especiales
+          let preguntas = null;
           if (bloque.titulo === 'Preguntas Básicas') {
-            // Extraer preguntas y respuestas
-            const preguntas = [
+            preguntas = [
               {
                 q: '¿Qué es una Comunidad Gestora del Agua?',
                 a: 'Una Comunidad Gestora del Agua (C.G.A) es una organización que presta comunitariamente el servicio de agua, debe incluir esta denominación en su razón social, y estar inscrita en el SIGCA.'
@@ -153,42 +189,9 @@ function ResumenLeyAccordion() {
                 a: 'Si su acueducto comunitario se constituye como C.G.A., se beneficiará del nuevo marco legal: Régimen Especial (vigilancia diferenciada), Registro en SIGCA, Protección de Fuentes (declaradas de interés público), Acceso a Subsidios y Apoyos (transferencias y subsidios definidos por nueva metodología).'
               }
             ];
-            return (
-              <div key={idx+1} style={{marginBottom: '0.2em', border: '1px solid #bbb', borderRadius: 6, background: '#f7f7f7'}}>
-                <button
-                  style={{
-                    width: '100%',
-                    textAlign: 'left',
-                    padding: '1em',
-                    background: '#e0e0e0',
-                    border: 'none',
-                    borderRadius: 6,
-                    fontWeight: 'bold',
-                    color: '#222',
-                    fontSize: '1.1em',
-                    cursor: 'pointer'
-                  }}
-                  onClick={() => setOpenIndex(openIndex === idx+1 ? null : idx+1)}
-                >
-                  {bloque.titulo}
-                </button>
-                {openIndex === idx+1 && (
-                  <div style={{padding: '0.3em 0.4em 0.05em 0.4em', background: '#fff', color: '#222', borderRadius: 6, textAlign: 'justify', fontSize: '1.01em', lineHeight: 1.35}}>
-                    <div style={{display: 'flex', flexDirection: 'column', gap: '0.2em'}}>
-                      {preguntas.map((p, i) => (
-                        <div key={i} style={{padding: '0.1em 0', borderBottom: i < preguntas.length-1 ? '1px solid #e0e0e0' : 'none'}}>
-                          <b>{p.q}</b><br/>{p.a}
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                )}
-              </div>
-            );
           }
-          // Si es el bloque de "Preguntas de Contexto", aplicar estilo especial
           if (bloque.titulo === 'Preguntas de Contexto') {
-            const preguntas = [
+            preguntas = [
               {
                 q: '¿Cuál es el problema que resuelve esta ley?',
                 a: 'La ley busca resolver la falta de un marco jurídico adecuado que reconozca y fortalezca la gestión comunitaria del agua. Históricamente, las comunidades han sido excluidas de la Ley 142 de 1994, que opera bajo una lógica empresarial, imponiéndoles cargas y regulaciones inadecuadas. También atiende la necesidad de acceso universal al agua y saneamiento y responde a la emergencia climática.'
@@ -206,42 +209,9 @@ function ResumenLeyAccordion() {
                 a: 'El documento no proporciona información sobre leyes similares en otros países.'
               }
             ];
-            return (
-              <div key={idx+1} style={{marginBottom: '0.2em', border: '1px solid #bbb', borderRadius: 6, background: '#f7f7f7'}}>
-                <button
-                  style={{
-                    width: '100%',
-                    textAlign: 'left',
-                    padding: '1em',
-                    background: '#e0e0e0',
-                    border: 'none',
-                    borderRadius: 6,
-                    fontWeight: 'bold',
-                    color: '#222',
-                    fontSize: '1.1em',
-                    cursor: 'pointer'
-                  }}
-                  onClick={() => setOpenIndex(openIndex === idx+1 ? null : idx+1)}
-                >
-                  {bloque.titulo}
-                </button>
-                {openIndex === idx+1 && (
-                  <div style={{padding: '0.3em 0.4em 0.05em 0.4em', background: '#fff', color: '#222', borderRadius: 6, textAlign: 'justify', fontSize: '1.01em', lineHeight: 1.35}}>
-                    <div style={{display: 'flex', flexDirection: 'column', gap: '0.2em'}}>
-                      {preguntas.map((p, i) => (
-                        <div key={i} style={{padding: '0.1em 0', borderBottom: i < preguntas.length-1 ? '1px solid #e0e0e0' : 'none'}}>
-                          <b>{p.q}</b><br/>{p.a}
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                )}
-              </div>
-            );
           }
-          // Si es el bloque de "Preguntas Prácticas", aplicar estilo especial
           if (bloque.titulo === 'Preguntas Prácticas') {
-            const preguntas = [
+            preguntas = [
               {
                 q: '¿Cómo me registro como Comunidad Gestora del Agua?',
                 a: 'El acto de registro estará en cabeza de la gobernación de su domicilio (o la Alcaldía Mayor de Bogotá). Se debe presentar: acta de constitución/asamblea, estatutos, documento de identidad del representante legal y junta directiva, e identificación del área de gestión.'
@@ -263,42 +233,9 @@ function ResumenLeyAccordion() {
                 a: 'Sí, las CGA podrán recibir apoyo financiero a través de transferencias estatales para gastos de administración y operación. El manejo de aguas residuales en áreas sin alcantarillado se considera gasto social y permite el uso de recursos del Sistema General de Participaciones.'
               }
             ];
-            return (
-              <div key={idx+1} style={{marginBottom: '0.2em', border: '1px solid #bbb', borderRadius: 6, background: '#f7f7f7'}}>
-                <button
-                  style={{
-                    width: '100%',
-                    textAlign: 'left',
-                    padding: '1em',
-                    background: '#e0e0e0',
-                    border: 'none',
-                    borderRadius: 6,
-                    fontWeight: 'bold',
-                    color: '#222',
-                    fontSize: '1.1em',
-                    cursor: 'pointer'
-                  }}
-                  onClick={() => setOpenIndex(openIndex === idx+1 ? null : idx+1)}
-                >
-                  {bloque.titulo}
-                </button>
-                {openIndex === idx+1 && (
-                  <div style={{padding: '0.3em 0.4em 0.05em 0.4em', background: '#fff', color: '#222', borderRadius: 6, textAlign: 'justify', fontSize: '1.01em', lineHeight: 1.35}}>
-                    <div style={{display: 'flex', flexDirection: 'column', gap: '0.2em'}}>
-                      {preguntas.map((p, i) => (
-                        <div key={i} style={{padding: '0.1em 0', borderBottom: i < preguntas.length-1 ? '1px solid #e0e0e0' : 'none'}}>
-                          <b>{p.q}</b><br/>{p.a}
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                )}
-              </div>
-            );
           }
-          // Si es el bloque de "Preguntas sobre Estructura", aplicar estilo especial
           if (bloque.titulo === 'Preguntas sobre Estructura') {
-            const preguntas = [
+            preguntas = [
               {
                 q: '¿Cuántos artículos tiene la ley?',
                 a: 'El proyecto de ley contiene al menos 39 artículos.'
@@ -316,42 +253,9 @@ function ResumenLeyAccordion() {
                 a: 'La financiación y apoyo económico se aborda principalmente en el Título V y en los artículos 28, 35 y 36, que regulan proyectos de fortalecimiento, transferencias monetarias y aportes bajo condición a las CGA.'
               }
             ];
-            return (
-              <div key={idx+1} style={{marginBottom: '0.2em', border: '1px solid #bbb', borderRadius: 6, background: '#f7f7f7'}}>
-                <button
-                  style={{
-                    width: '100%',
-                    textAlign: 'left',
-                    padding: '1em',
-                    background: '#e0e0e0',
-                    border: 'none',
-                    borderRadius: 6,
-                    fontWeight: 'bold',
-                    color: '#222',
-                    fontSize: '1.1em',
-                    cursor: 'pointer'
-                  }}
-                  onClick={() => setOpenIndex(openIndex === idx+1 ? null : idx+1)}
-                >
-                  {bloque.titulo}
-                </button>
-                {openIndex === idx+1 && (
-                  <div style={{padding: '0.3em 0.4em 0.05em 0.4em', background: '#fff', color: '#222', borderRadius: 6, textAlign: 'justify', fontSize: '1.01em', lineHeight: 1.35}}>
-                    <div style={{display: 'flex', flexDirection: 'column', gap: '0.2em'}}>
-                      {preguntas.map((p, i) => (
-                        <div key={i} style={{padding: '0.1em 0', borderBottom: i < preguntas.length-1 ? '1px solid #e0e0e0' : 'none'}}>
-                          <b>{p.q}</b><br/>{p.a}
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                )}
-              </div>
-            );
           }
-          // Si es el bloque de "Preguntas Interactivas en la Web", aplicar estilo especial
           if (bloque.titulo === 'Preguntas Interactivas en la Web') {
-            const preguntas = [
+            preguntas = [
               {
                 q: '¿Puedo buscar términos específicos como "CAR" o "SINA"?',
                 a: 'El documento menciona "autoridad ambiental competente" y hace referencia al "Sistema Nacional de Atención y Prevención de Desastres", pero no se encuentran los acrónimos exactos "CAR" (Corporaciones Autónomas Regionales) ni "SINA" (Sistema Nacional Ambiental) en los fragmentos proporcionados.'
@@ -365,27 +269,39 @@ function ResumenLeyAccordion() {
                 a: 'Como Q&A System basado en el PDF, puedo extraer y citar textualmente cualquier artículo o párrafo solicitado, lo que equivale a proporcionar un extracto para su descarga o impresión.'
               }
             ];
-            return (
-              <div key={idx+1} style={{marginBottom: '0.2em', border: '1px solid #bbb', borderRadius: 6, background: '#f7f7f7'}}>
-                <button
-                  style={{
-                    width: '100%',
-                    textAlign: 'left',
-                    padding: '1em',
-                    background: '#e0e0e0',
-                    border: 'none',
-                    borderRadius: 6,
-                    fontWeight: 'bold',
-                    color: '#222',
-                    fontSize: '1.1em',
-                    cursor: 'pointer'
-                  }}
-                  onClick={() => setOpenIndex(openIndex === idx+1 ? null : idx+1)}
-                >
-                  {bloque.titulo}
-                </button>
-                {openIndex === idx+1 && (
-                  <div style={{padding: '0.3em 0.4em 0.05em 0.4em', background: '#fff', color: '#222', borderRadius: 6, textAlign: 'justify', fontSize: '1.01em', lineHeight: 1.35}}>
+          }
+          // Render acordeón especial o normal
+          const render = (
+            <div key={idx+1} style={{marginBottom: '0.2em', border: '1px solid #ccc', borderRadius: 6}}>
+              <button
+                style={{
+                  width: '100%',
+                  textAlign: 'left',
+                  padding: '1em',
+                  background: bgColor,
+                  border: 'none',
+                  borderRadius: 6,
+                  fontWeight: 'bold',
+                  color: textColor,
+                  fontSize: '1.1em',
+                  cursor: 'pointer',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'space-between'
+                }}
+                aria-expanded={openIndex === thisIdx}
+                aria-controls={`panel-bloque-${thisIdx}`}
+                id={`accordion-bloque-${thisIdx}`}
+                onClick={() => handleAccordion(thisIdx, bloque.titulo)}
+              >
+                <span>{bloque.titulo}</span>
+                <span style={{transition: 'transform 0.2s', transform: openIndex === thisIdx ? 'rotate(90deg)' : 'rotate(0deg)'}}>
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke={arrowColor} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+                </span>
+              </button>
+              {openIndex === thisIdx && (
+                <div id={`panel-bloque-${thisIdx}`} role="region" aria-labelledby={`accordion-bloque-${thisIdx}`} style={{padding: '0.3em 0.4em 0.05em 0.4em', background: '#fff', color: '#222', borderRadius: 6, textAlign: 'justify', fontSize: '1.01em', lineHeight: 1.35}}>
+                  {preguntas ? (
                     <div style={{display: 'flex', flexDirection: 'column', gap: '0.2em'}}>
                       {preguntas.map((p, i) => (
                         <div key={i} style={{padding: '0.1em 0', borderBottom: i < preguntas.length-1 ? '1px solid #e0e0e0' : 'none'}}>
@@ -393,41 +309,18 @@ function ResumenLeyAccordion() {
                         </div>
                       ))}
                     </div>
-                  </div>
-                )}
-              </div>
-            );
-          }
-          // Resto de bloques normales
-          return (
-            <div key={idx+1} style={{marginBottom: '0.2em', border: '1px solid #ccc', borderRadius: 6}}>
-              <button
-                style={{
-                  width: '100%',
-                  textAlign: 'left',
-                  padding: '1em',
-                  background: '#f7f7f7',
-                  border: 'none',
-                  borderRadius: 6,
-                  fontWeight: 'bold',
-                  color: '#222',
-                  fontSize: '1.1em',
-                  cursor: 'pointer'
-                }}
-                onClick={() => setOpenIndex(openIndex === idx+1 ? null : idx+1)}
-              >
-                {bloque.titulo}
-              </button>
-              {openIndex === idx+1 && (
-                <div style={{padding: '0.3em 0.4em 0.05em 0.4em', background: '#fff', color: '#222', borderRadius: 6, textAlign: 'justify', fontSize: '1.01em', lineHeight: 1.35}}>
-                  <div
-                    style={{whiteSpace: 'pre-wrap', color: '#222', background: 'inherit', fontFamily: 'inherit', margin: 0, textAlign: 'justify'}}
-                    dangerouslySetInnerHTML={{ __html: formatContenido(bloque.contenido) }}
-                  />
+                  ) : (
+                    <div
+                      style={{whiteSpace: 'pre-wrap', color: '#222', background: 'inherit', fontFamily: 'inherit', margin: 0, textAlign: 'justify'}}
+                      dangerouslySetInnerHTML={{ __html: formatContenido(bloque.contenido) }}
+                    />
+                  )}
                 </div>
               )}
             </div>
           );
+          visualIdx++;
+          return render;
         })}
       </div>
     </section>
