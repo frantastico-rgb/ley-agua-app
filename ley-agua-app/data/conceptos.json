@@ -1,0 +1,30 @@
+[
+    {
+        "id": 1,
+        "t": "Autonomía",
+        "d": "Decisiones propias",
+        "ic": "🏛️",
+        "c": "blue"
+    },
+    {
+        "id": 2,
+        "t": "Protección",
+        "d": "Conservación fuentes",
+        "ic": "💧",
+        "c": "cyan"
+    },
+    {
+        "id": 3,
+        "t": "Articulación",
+        "d": "Coordinación SINA",
+        "ic": "🤝",
+        "c": "green"
+    },
+    {
+        "id": 4,
+        "t": "Participación",
+        "d": "Democracia comunitaria",
+        "ic": "👥",
+        "c": "purple"
+    }
+]

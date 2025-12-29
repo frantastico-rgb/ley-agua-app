@@ -1,0 +1,38 @@
+[
+    {
+        "f": 1,
+        "t": "Promulgación",
+        "dur": "Día 0",
+        "a": "art14"
+    },
+    {
+        "f": 2,
+        "t": "Reglamentación",
+        "dur": "0-6 m",
+        "a": "art10"
+    },
+    {
+        "f": 3,
+        "t": "Registro",
+        "dur": "6-18 m",
+        "a": "art10"
+    },
+    {
+        "f": 4,
+        "t": "Adecuación",
+        "dur": "Año 1-2",
+        "a": "art9"
+    },
+    {
+        "f": 5,
+        "t": "Integración",
+        "dur": "Año 2",
+        "a": "art11"
+    },
+    {
+        "f": 6,
+        "t": "Operación",
+        "dur": "Año 2+",
+        "a": "art7"
+    }
+]

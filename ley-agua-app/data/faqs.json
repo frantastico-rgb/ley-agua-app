@@ -1,0 +1,57 @@
+[
+    {
+        "id": 1,
+        "cat": "Básicas",
+        "q": "¿Qué es una Comunidad Gestora?",
+        "a": "Organizaciones comunitarias que gestionan agua en sus territorios: acueductos y juntas.",
+        "arts": [
+            "art3"
+        ]
+    },
+    {
+        "id": 2,
+        "cat": "Básicas",
+        "q": "¿Por qué esta ley?",
+        "a": "Reconocer formalmente su trabajo y darles autoridad legal y recursos.",
+        "arts": [
+            "art1"
+        ]
+    },
+    {
+        "id": 3,
+        "cat": "Prácticas",
+        "q": "¿Cómo registro?",
+        "a": "Ante Ministerio de Ambiente que expide certificación.",
+        "arts": [
+            "art10"
+        ]
+    },
+    {
+        "id": 4,
+        "cat": "Prácticas",
+        "q": "¿Plazo?",
+        "a": "2 años para adecuación.",
+        "arts": [
+            "art13"
+        ]
+    },
+    {
+        "id": 5,
+        "cat": "Prácticas",
+        "q": "¿Beneficios?",
+        "a": "Reconocimiento legal, autonomía, apoyo técnico y financiero.",
+        "arts": [
+            "art4",
+            "art12"
+        ]
+    },
+    {
+        "id": 6,
+        "cat": "Obligaciones",
+        "q": "¿Obligaciones?",
+        "a": "Administrar, proteger fuentes, educación ambiental, coordinación.",
+        "arts": [
+            "art7"
+        ]
+    }
+]

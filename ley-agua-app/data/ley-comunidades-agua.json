@@ -1,0 +1,140 @@
+{
+    "titulo": "PROYECTO DE LEY 149 DE 2024 CÁMARA",
+    "subtitulo": "Por la cual se reconocen y regulan las Comunidades Gestoras del Agua como autoridades ambientales de carácter especial",
+    "capitulos": [
+        {
+            "id": "cap1",
+            "titulo": "CAPÍTULO I - DISPOSICIONES GENERALES",
+            "articulos": [
+                {
+                    "id": "art1",
+                    "numero": "Artículo 1",
+                    "titulo": "Objeto",
+                    "contenido": "La presente ley tiene por objeto reconocer y regular a las Comunidades Gestoras del Agua como autoridades ambientales de carácter especial, estableciendo su naturaleza jurídica, funciones, competencias y mecanismos de articulación con el Sistema Nacional Ambiental (SINA).",
+                    "keywords": ["autoridades ambientales", "SINA", "naturaleza jurídica"]
+                },
+                {
+                    "id": "art2",
+                    "numero": "Artículo 2",
+                    "titulo": "Ámbito de aplicación",
+                    "contenido": "Esta ley se aplicará en todo el territorio nacional a las organizaciones comunitarias que tradicionalmente han gestionado el agua para consumo humano y uso doméstico, incluyendo acueductos comunitarios, juntas administradoras de acueductos veredales y otras formas organizativas similares.",
+                    "keywords": ["territorio nacional", "acueductos comunitarios", "juntas administradoras"]
+                },
+                {
+                    "id": "art3",
+                    "numero": "Artículo 3",
+                    "titulo": "Definiciones",
+                    "contenido": "Para los efectos de la presente ley se establecen las siguientes definiciones:\n\na) Comunidades Gestoras del Agua: Organizaciones comunitarias sin ánimo de lucro que tradicionalmente han gestionado de manera autónoma el recurso hídrico en sus territorios.\n\nb) Autoridad Ambiental de Carácter Especial: Entidad reconocida por el Estado con facultades específicas para la gestión, protección y conservación del agua.\n\nc) Gestión Comunitaria del Agua: Conjunto de prácticas, conocimientos y saberes tradicionales aplicados al manejo sostenible del recurso hídrico.\n\nd) Territorio del Agua: Espacio geográfico donde la comunidad ejerce su autoridad sobre el recurso hídrico.",
+                    "keywords": ["definiciones", "gestión comunitaria", "autoridad ambiental", "territorio"]
+                }
+            ]
+        },
+        {
+            "id": "cap2",
+            "titulo": "CAPÍTULO II - RECONOCIMIENTO Y NATURALEZA JURÍDICA",
+            "articulos": [
+                {
+                    "id": "art4",
+                    "numero": "Artículo 4",
+                    "titulo": "Reconocimiento como autoridades ambientales especiales",
+                    "contenido": "Reconócense las Comunidades Gestoras del Agua como autoridades ambientales de carácter especial dentro del Sistema Nacional Ambiental (SINA), con autonomía para la gestión, protección y conservación del recurso hídrico en sus territorios.",
+                    "keywords": ["reconocimiento", "autonomía", "SINA"]
+                },
+                {
+                    "id": "art5",
+                    "numero": "Artículo 5",
+                    "titulo": "Naturaleza jurídica",
+                    "contenido": "Las Comunidades Gestoras del Agua son entidades de derecho público de carácter especial, sin ánimo de lucro, con personería jurídica propia y patrimonio autónomo, que ejercen funciones de autoridad ambiental en el marco de sus competencias.",
+                    "keywords": ["derecho público", "personería jurídica", "patrimonio"]
+                },
+                {
+                    "id": "art6",
+                    "numero": "Artículo 6",
+                    "titulo": "Principios rectores",
+                    "contenido": "La gestión comunitaria del agua se regirá por los siguientes principios:\n\na) Autonomía comunitaria\nb) Solidaridad y reciprocidad\nc) Sostenibilidad ambiental\nd) Equidad en el acceso\ne) Participación democrática\nf) Protección de saberes ancestrales\ng) Interculturalidad",
+                    "keywords": ["principios", "autonomía", "sostenibilidad", "participación"]
+                }
+            ]
+        },
+        {
+            "id": "cap3",
+            "titulo": "CAPÍTULO III - FUNCIONES Y COMPETENCIAS",
+            "articulos": [
+                {
+                    "id": "art7",
+                    "numero": "Artículo 7",
+                    "titulo": "Funciones",
+                    "contenido": "Las Comunidades Gestoras del Agua ejercerán las siguientes funciones:\n\na) Administrar, operar y mantener los sistemas de acueducto comunitario\nb) Proteger las fuentes hídricas y zonas de recarga\nc) Ordenar el uso del agua en su territorio\nd) Establecer normas para la conservación del recurso\ne) Resolver conflictos relacionados con el agua\nf) Representar a la comunidad ante autoridades\ng) Promover la educación ambiental",
+                    "keywords": ["funciones", "administración", "protección", "ordenamiento"]
+                },
+                {
+                    "id": "art8",
+                    "numero": "Artículo 8",
+                    "titulo": "Competencias ambientales",
+                    "contenido": "Las Comunidades Gestoras del Agua tendrán competencia para:\n\na) Otorgar permisos de uso del agua\nb) Implementar planes de manejo ambiental\nc) Realizar monitoreo de calidad del agua\nd) Establecer servidumbres de acueducto\ne) Declarar áreas de protección hídrica",
+                    "keywords": ["competencias", "permisos", "monitoreo", "áreas protegidas"]
+                }
+            ]
+        },
+        {
+            "id": "cap4",
+            "titulo": "CAPÍTULO IV - ORGANIZACIÓN Y ESTRUCTURA",
+            "articulos": [
+                {
+                    "id": "art9",
+                    "numero": "Artículo 9",
+                    "titulo": "Órganos de dirección",
+                    "contenido": "Cada Comunidad Gestora del Agua contará con:\n\na) Asamblea General: Máximo órgano de decisión\nb) Junta Directiva: Órgano de administración\nc) Comités especializados: Para temas técnicos y ambientales\nd) Revisor fiscal o control interno",
+                    "keywords": ["organización", "asamblea", "junta directiva"]
+                },
+                {
+                    "id": "art10",
+                    "numero": "Artículo 10",
+                    "titulo": "Registro y acreditación",
+                    "contenido": "Las Comunidades Gestoras del Agua deberán registrarse ante el Ministerio de Ambiente y Desarrollo Sostenible, que llevará un registro nacional y expedirá certificaciones de acreditación como autoridades ambientales especiales.",
+                    "keywords": ["registro", "acreditación", "ministerio"]
+                }
+            ]
+        },
+        {
+            "id": "cap5",
+            "titulo": "CAPÍTULO V - ARTICULACIÓN CON EL SINA",
+            "articulos": [
+                {
+                    "id": "art11",
+                    "numero": "Artículo 11",
+                    "titulo": "Integración al SINA",
+                    "contenido": "Las Comunidades Gestoras del Agua se integrarán al Sistema Nacional Ambiental (SINA) manteniendo su autonomía y estableciendo mecanismos de coordinación con las Corporaciones Autónomas Regionales y demás autoridades ambientales.",
+                    "keywords": ["SINA", "coordinación", "CAR"]
+                },
+                {
+                    "id": "art12",
+                    "numero": "Artículo 12",
+                    "titulo": "Apoyo técnico y financiero",
+                    "contenido": "El Estado, a través del Ministerio de Ambiente, las CAR y demás entidades competentes, brindará apoyo técnico, capacitación y recursos financieros para fortalecer la gestión comunitaria del agua.",
+                    "keywords": ["apoyo estatal", "capacitación", "recursos"]
+                }
+            ]
+        },
+        {
+            "id": "cap6",
+            "titulo": "CAPÍTULO VI - DISPOSICIONES FINALES",
+            "articulos": [
+                {
+                    "id": "art13",
+                    "numero": "Artículo 13",
+                    "titulo": "Régimen de transición",
+                    "contenido": "Las organizaciones comunitarias de agua existentes tendrán un plazo de dos (2) años para adecuarse a las disposiciones de la presente ley.",
+                    "keywords": ["transición", "plazo", "adecuación"]
+                },
+                {
+                    "id": "art14",
+                    "numero": "Artículo 14",
+                    "titulo": "Vigencia",
+                    "contenido": "La presente ley rige a partir de su promulgación y deroga todas las disposiciones que le sean contrarias.",
+                    "keywords": ["vigencia", "promulgación"]
+                }
+            ]
+        }
+    ]
+}

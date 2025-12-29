@@ -1,0 +1,30 @@
+[
+    {
+        "t": "Comunidades Gestoras",
+        "d": "Organizaciones que gestionan agua en sus territorios",
+        "r": [
+            "art3"
+        ]
+    },
+    {
+        "t": "SINA",
+        "d": "Sistema Nacional Ambiental de Colombia",
+        "r": [
+            "art1"
+        ]
+    },
+    {
+        "t": "CAR",
+        "d": "Corporaciones Autónomas Regionales",
+        "r": [
+            "art11"
+        ]
+    },
+    {
+        "t": "Personería Jurídica",
+        "d": "Reconocimiento legal como sujeto de derechos",
+        "r": [
+            "art5"
+        ]
+    }
+]
