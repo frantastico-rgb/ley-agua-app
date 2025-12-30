@@ -32,22 +32,22 @@ function App() {
   return (
     <>
       {/* Switch de modo claro/oscuro y control de fuente en columna vertical */}
-      <div style={{position: 'fixed', top: 18, right: 24, zIndex: 2000, display: 'flex', flexDirection: 'column', gap: 8, alignItems: 'flex-end'}}>
+      <div style={{position: 'fixed', top: 18, right: 24, zIndex: 2000, display: 'flex', flexDirection: 'column', gap: 6, alignItems: 'flex-end'}}>
         <button
           onClick={() => setDarkMode(dm => !dm)}
           style={{
             background: darkMode ? '#fff' : '#1976d2',
             color: darkMode ? '#1976d2' : '#fff',
             border: '2px solid #1976d2',
-            borderRadius: 16,
-            padding: '0.2em 0.7em',
+            borderRadius: 12,
+            padding: '0.1em 0.4em',
             fontWeight: 'bold',
-            fontSize: '1.1em',
+            fontSize: '0.95em',
             cursor: 'pointer',
             boxShadow: '0 2px 8px #0002',
             transition: 'all 0.2s',
-            minWidth: 36,
-            minHeight: 36,
+            minWidth: 28,
+            minHeight: 28,
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center'
@@ -56,21 +56,21 @@ function App() {
         >
           {darkMode ? (
             <span title="Modo claro" style={{display: 'flex', alignItems: 'center'}}>
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1976d2" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#1976d2" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
             </span>
           ) : (
             <span title="Modo oscuro" style={{display: 'flex', alignItems: 'center'}}>
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z"/></svg>
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z"/></svg>
             </span>
           )}
         </button>
-        <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center', background: '#fff', borderRadius: 16, padding: '0.2em 0.4em', border: '2px solid #1976d2', minWidth: 36}}>
-          <button onClick={() => handleFontSize(2)} style={{fontSize: 16, background: 'none', border: 'none', color: '#1976d2', cursor: 'pointer', fontWeight: 'bold', minWidth: 28, minHeight: 28}} aria-label="Aumentar tamaño de fuente">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1976d2" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M12 5v14M5 12h14"/></svg>
+        <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center', background: '#fff', borderRadius: 12, padding: '0.1em 0.2em', border: '2px solid #1976d2', minWidth: 28}}>
+          <button onClick={() => handleFontSize(2)} style={{fontSize: 12, background: 'none', border: 'none', color: '#1976d2', cursor: 'pointer', fontWeight: 'bold', minWidth: 20, minHeight: 20}} aria-label="Aumentar tamaño de fuente">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#1976d2" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M12 5v14M5 12h14"/></svg>
           </button>
-          <span style={{fontSize: 13, color: '#1976d2', fontWeight: 'bold', minWidth: 24, textAlign: 'center'}}>{fontSize}px</span>
-          <button onClick={() => handleFontSize(-2)} style={{fontSize: 16, background: 'none', border: 'none', color: '#1976d2', cursor: 'pointer', fontWeight: 'bold', minWidth: 28, minHeight: 28}} aria-label="Reducir tamaño de fuente">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1976d2" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14"/></svg>
+          <span style={{fontSize: 10, color: '#1976d2', fontWeight: 'bold', minWidth: 18, textAlign: 'center'}}>{fontSize}px</span>
+          <button onClick={() => handleFontSize(-2)} style={{fontSize: 12, background: 'none', border: 'none', color: '#1976d2', cursor: 'pointer', fontWeight: 'bold', minWidth: 20, minHeight: 20}} aria-label="Reducir tamaño de fuente">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#1976d2" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14"/></svg>
           </button>
         </div>
       </div>
@@ -82,23 +82,6 @@ function App() {
           <h1 style={{textAlign: 'center', marginTop: 0, marginBottom: '1em'}} id="titulo-principal">
             Ley de Comunidades del Agua
           </h1>
-          <img 
-            src={mascota} 
-            alt="Mascota Cisne DIACUA" 
-            className="mascota-cisne"
-            style={{
-              position: 'absolute',
-              right: -10,
-              top: '50%',
-              transform: 'translateY(-50%)',
-              width: 70,
-              height: 'auto',
-              filter: 'drop-shadow(0 2px 6px #1976d2aa)',
-              transition: 'transform 0.3s, filter 0.3s',
-              cursor: 'pointer',
-              zIndex: 2
-            }}
-          />
         </div>
         <h2 style={{textAlign: 'center', margin: '0 0 1.1em 0', fontWeight: 700, fontSize: '1.35em', color: '#fff'}} id="resumen-ley-titulo">
           Resumen Proyecto Ley 149 de 2024

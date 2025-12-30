@@ -112,13 +112,14 @@ const FloatingSearch = () => {
         className="floating-search-btn"
         onClick={() => setOpen(!open)}
         aria-label="Buscar"
+        style={{ width: 38, height: 38, fontSize: 18 }}
       >
-        <span role="img" aria-label="lupa" style={{ fontSize: 24 }}>🔍</span>
+        <span role="img" aria-label="lupa" style={{ fontSize: 16 }}>🔍</span>
       </button>
 
       {/* Panel de búsqueda */}
       {open && (
-        <div className="floating-search-panel" role="dialog" aria-modal="true" aria-label="Panel de búsqueda">
+        <div className="floating-search-panel" role="dialog" aria-modal="true" aria-label="Panel de búsqueda" style={{ width: 220, padding: '0.7em' }}>
           {/* Mensaje accesible para lectores de pantalla */}
           <div aria-live="polite" aria-atomic="true" style={{position: 'absolute', left: '-9999px', height: 1, width: 1, overflow: 'hidden'}}>{statusMsg}</div>
           <div className="floating-search-header">

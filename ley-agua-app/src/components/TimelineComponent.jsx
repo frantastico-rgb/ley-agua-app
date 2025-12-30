@@ -8,8 +8,19 @@ const colorList = [
 function TimelineComponent() {
   const [open, setOpen] = useState(false);
   const [hover, setHover] = useState(false);
+  const [statusMsg, setStatusMsg] = useState('');
+
+  function handleToggle() {
+    setOpen(o => {
+      setStatusMsg(!o ? 'Línea de tiempo expandida' : 'Línea de tiempo colapsada');
+      return !o;
+    });
+  }
+
   return (
-    <section style={{marginBottom: '2em'}}>
+    <section aria-label="Línea de Tiempo" style={{marginBottom: '2em', position: 'relative'}}>
+      {/* Mensaje accesible para lectores de pantalla */}
+      <div aria-live="polite" aria-atomic="true" style={{position: 'absolute', left: '-9999px', height: 1, width: 1, overflow: 'hidden'}}>{statusMsg}</div>
       <div
         style={{
           background: '#222',
@@ -27,12 +38,15 @@ function TimelineComponent() {
           transition: 'all 0.2s',
           position: 'relative',
         }}
-        onClick={() => setOpen(v => !v)}
+        onClick={handleToggle}
         onMouseEnter={() => setHover(true)}
         onMouseLeave={() => setHover(false)}
         aria-expanded={open}
+        aria-controls="timeline-content"
         tabIndex={0}
+        id="timeline-accordion-btn"
         title="Haz click para ver la línea de tiempo"
+        role="button"
       >
         <span>Línea de Tiempo</span>
         <span style={{fontSize: '1.2em', marginLeft: 8}}>{open ? '▲' : '▼'}</span>
@@ -55,7 +69,7 @@ function TimelineComponent() {
         )}
       </div>
       {open && (
-        <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center', marginTop: '2em'}}>
+        <div id="timeline-content" role="region" aria-labelledby="timeline-accordion-btn" style={{display: 'flex', flexDirection: 'column', alignItems: 'center', marginTop: '2em'}}>
           {timeline.map((item, idx) => (
             <div key={item.f} style={{
               display: 'flex',

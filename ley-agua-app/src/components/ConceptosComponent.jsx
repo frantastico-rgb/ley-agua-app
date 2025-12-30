@@ -11,11 +11,11 @@ const colorMap = {
 
 function ConceptosComponent() {
   return (
-    <section>
+    <section aria-label="Conceptos Clave">
       <h2>Conceptos Clave</h2>
       <div style={{display: 'flex', flexWrap: 'wrap', gap: '1em', marginTop: '1em'}}>
         {conceptos.map(con => (
-          <div key={con.id} style={{
+          <article key={con.id} style={{
             flex: '1 1 180px',
             minWidth: 180,
             background: '#f7f7f7',
@@ -31,7 +31,7 @@ function ConceptosComponent() {
             <span style={{fontSize: '2em', marginBottom: 8}}>{con.ic}</span>
             <strong style={{fontSize: '1.1em', marginBottom: 4, color: colorMap[con.c] || colorMap.default}}>{con.t}</strong>
             <div style={{color: '#333', fontWeight: 500}}>{con.d}</div>
-          </div>
+          </article>
         ))}
       </div>
     </section>

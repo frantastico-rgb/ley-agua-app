@@ -3,10 +3,21 @@ import glosario from '../../data/glosario.json';
 
 function GlosarioComponent() {
   const [open, setOpen] = useState(false);
+  const [statusMsg, setStatusMsg] = useState('');
+
+  function handleToggle() {
+    setOpen(o => {
+      setStatusMsg(!o ? 'Glosario expandido' : 'Glosario colapsado');
+      return !o;
+    });
+  }
+
   return (
-    <section>
+    <section aria-label="Glosario" style={{position: 'relative'}}>
+      {/* Mensaje accesible para lectores de pantalla */}
+      <div aria-live="polite" aria-atomic="true" style={{position: 'absolute', left: '-9999px', height: 1, width: 1, overflow: 'hidden'}}>{statusMsg}</div>
       <button
-        onClick={() => setOpen(!open)}
+        onClick={handleToggle}
         style={{
           width: '100%',
           textAlign: 'left',
@@ -23,11 +34,12 @@ function GlosarioComponent() {
         }}
         aria-expanded={open}
         aria-controls="glosario-content"
+        id="glosario-accordion-btn"
       >
         Glosario {open ? '▲' : '▼'}
       </button>
       {open && (
-        <div id="glosario-content" style={{marginTop: 0, marginBottom: '2em'}}>
+        <div id="glosario-content" role="region" aria-labelledby="glosario-accordion-btn" style={{marginTop: 0, marginBottom: '2em'}}>
           <ul style={{listStyle: 'none', padding: 0}}>
             {glosario.map((item, idx) => (
               <li key={idx} style={{
